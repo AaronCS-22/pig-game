@@ -27,7 +27,10 @@ document.querySelector("#app").innerHTML = `
     </main>
 `;
 
-// Variables globales
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Variables globales ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 const puntosGanar = 10;
 let jugadorActual = 0;
 
@@ -52,34 +55,12 @@ const btnNew = document.querySelector(".btn--new");
 // Crear nueva partida
 nuevaPartida();
 
-function nuevaPartida() {
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Botones ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  // Limpiar el juego
-  document
-    .querySelector(`.player--${jugadorActual}`)
-    .classList.remove("player--winner");
-  dadoImg.style.display = "none";
-  p0Activo.classList.add("player--active");
-  p1Activo.classList.remove("player--active");
+// · · Botón Roll · ·
 
-  // Reiniciar los datos
-  J1.rondaActual = 0;
-  J2.rondaActual = 0;
-  J1.puntosTotales = 0;
-  J2.puntosTotales = 0;
-  jugadorActual = 0;
-  
-  // Actualizar los marcadores
-  p0Marcador.textContent = J1.puntosTotales;
-  p1Marcador.textContent = J2.puntosTotales;
-  p0Actual.textContent = J1.rondaActual;
-  p1Actual.textContent = J2.rondaActual;
-
-  // Ocultar el dado
-  dadoImg.style.display = "none";
-}
-
-// Botón Roll
 btnRoll.addEventListener("click", () => {
   //Dado aleatorio
   const dado = Math.trunc(Math.random() * 6) + 1;
@@ -108,7 +89,8 @@ btnRoll.addEventListener("click", () => {
   }
 });
 
-// Botón Hold
+// · · Botón Hold · ·
+
 btnHold.addEventListener("click", () => {
   // Comprobar qué jugador está actualmente activo
   if (jugadorActual === 0) {
@@ -122,7 +104,18 @@ btnHold.addEventListener("click", () => {
   }
 });
 
-// Nueva ronda
+// · · Botón de nueva partida · ·
+
+btnNew.addEventListener("click", () => {
+  nuevaPartida();
+});
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Funciones ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// · · Nueva ronda · ·
+
 function nuevaRonda() {
   // Reiniciar los datos de la ronda
   J1.rondaActual = 0;
@@ -161,12 +154,8 @@ function nuevaRonda() {
   }
 }
 
-// Botón de nueva partida
-btnNew.addEventListener("click", () => {
-  nuevaPartida();
-});
+// · · Ganador · ·
 
-// Ganador
 function ganador(ganador) {
   // Mostrar el ganador con el color de fondo
   document.querySelector(`.player--${ganador}`).classList.add("player--winner");
@@ -174,6 +163,34 @@ function ganador(ganador) {
   // Impedir que el juego continúe
   btnRoll.disabled = true;
   btnHold.disabled = true;
+
+  // Ocultar el dado
+  dadoImg.style.display = "none";
+}
+
+// · · Nueva partida · ·
+
+function nuevaPartida() {
+  // Limpiar el juego
+  document
+    .querySelector(`.player--${jugadorActual}`)
+    .classList.remove("player--winner");
+  dadoImg.style.display = "none";
+  p0Activo.classList.add("player--active");
+  p1Activo.classList.remove("player--active");
+
+  // Reiniciar los datos
+  J1.rondaActual = 0;
+  J2.rondaActual = 0;
+  J1.puntosTotales = 0;
+  J2.puntosTotales = 0;
+  jugadorActual = 0;
+
+  // Actualizar los marcadores
+  p0Marcador.textContent = J1.puntosTotales;
+  p1Marcador.textContent = J2.puntosTotales;
+  p0Actual.textContent = J1.rondaActual;
+  p1Actual.textContent = J2.rondaActual;
 
   // Ocultar el dado
   dadoImg.style.display = "none";
