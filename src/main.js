@@ -31,7 +31,7 @@ document.querySelector("#app").innerHTML = `
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Variables globales ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-const puntosGanar = 10;
+const puntosGanar = 100;
 let jugadorActual = 0;
 
 // Creación de los objetos jugadores
@@ -70,7 +70,7 @@ btnRoll.addEventListener("click", () => {
   // Permitimos al usuario guardar su puntuación obtenida
   btnHold.disabled = false;
 
-  //El dado es igual a 1
+  //El dado es distinto de 1
   if (dado !== 1) {
     //Comporbar el jugador activo
     if (jugadorActual === 0) {
@@ -83,7 +83,7 @@ btnRoll.addEventListener("click", () => {
       p1Actual.textContent = J2.rondaActual;
     }
 
-    // El dado es distinto de 1
+    // El dado es igual a 1
   } else {
     nuevaRonda();
   }
