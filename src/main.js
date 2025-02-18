@@ -194,4 +194,8 @@ function nuevaPartida() {
 
   // Ocultar el dado
   dadoImg.style.display = "none";
+
+  // Desbloquear los botones
+  btnRoll.disabled = false;
+  btnHold.disabled = true;
 }
